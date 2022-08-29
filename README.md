@@ -1,1 +1,1 @@
-# Javascript Course 🚀
+# 🚀 Javascript Course 🚀
