@@ -73,6 +73,12 @@ const restaurant = {
   orderDelivery: function ({ starterIndex, mainIndex, time, address }) {
     console.log(starterIndex, mainIndex, time, address);
   },
+
+  orderPasta: function (ing1, ing2, ing3) {
+    console.log(
+      `Here is your delicious pasta with ${ing1}, ${ing2} and ${ing3}`
+    );
+  },
 };
 
 // console.log('\nDESESTRUCTURACIÓN EN OBJETOS');
@@ -115,32 +121,3 @@ const restaurant = {
 //   mainIndex: 2,
 //   starterIndex: 1,
 // });
-
-/**
- * TODO OPERADOR SPREAD
- * Este operador permite expandir un elemento iterable (Arrays, strings,
- * maps, sets). Los Objetos NO son iterables.
- * Desempaca todos los valores
- */
-console.log('\nOPERADOR SPREAD');
-// Crear un nuevo array a partir de otro
-const arr = [7, 8, 9];
-const newArr = [1, 2, ...arr];
-console.log(newArr);
-console.log(...newArr);
-
-const newMenu = [...restaurant.mainMenu, 'Gnocci'];
-console.log(newMenu);
-
-// Copiar un array
-const mainMenuCopy = [...restaurant.mainMenu];
-console.log(mainMenuCopy);
-
-// Unir 2 o más arrays
-const menu = [...restaurant.mainMenu, ...restaurant.starterMenu];
-console.log(menu);
-
-// Spread con strings
-const str = 'Daniel';
-const letters = [...str, ' ', 'C.'];
-console.log(letters);
