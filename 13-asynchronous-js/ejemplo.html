@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: rgb(255, 170, 184);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      font-family: sans-serif;
+    }
+
+    h1 {
+      font-size: 4rem;
+      color: white;
+    }
+
+    .container {
+      background-color: rgb(240, 240, 240);
+      padding: 1rem 1.5rem;
+      border-radius: 0.5rem;
+      margin: 1rem;
+      width: 200px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .pokemon-name {
+      color: black;
+    }
+
+    .type {
+      color: black;
+      font-weight: 700;
+      font-style: normal;
+    }
+
+    .electric,
+    .grass,
+    .water,
+    .fire,
+    .normal,
+    .ground {
+      background-color: rgb(241, 205, 0);
+      padding: 0.2rem 0.4rem;
+      border-radius: 0.2rem;
+      font-size: 0.8rem;
+    }
+
+    .grass {
+      background-color: rgb(0, 175, 0);
+    }
+
+    .water {
+      background-color: rgb(34, 122, 255);
+    }
+
+    .fire {
+      background-color: rgb(255, 93, 29);
+    }
+
+    .normal {
+      background-color: rgb(184, 184, 184);
+    }
+
+    .ground {
+      background-color: rgb(158, 109, 70);
+    }
+
+    .ability {
+      color: black;
+      font-style: italic;
+    }
+
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      max-width: 1200px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Ejemplo - PokeAPI</h1>
+  <section class="cards">
+
+  </section>
+  <!-- <article class="container">
+    <h2 class="pokemon-name">Pikachu</h2>
+    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png" alt="">
+    <p><span class="type">Type:</span> <span class="electric">Electric</span></p>
+    <p class="ability"><span class="type">Ability:</span> Static</p>
+  </article> -->
+  <script>
+    const cards = document.querySelector('.cards');
+
+    const renderCard = function (data) {
+      const html = `
+      <article class="container">
+        <h2 class="pokemon-name">${data.name.toUpperCase()}</h2>
+        <img src="${data.sprites.front_default}" alt="">
+        <p><span class="type">Type:</span> <span class="${data.types[0].type.name}">${data.types[0].type.name}</span></p>
+        <p class="ability"><span class="type">Ability:</span> ${data.abilities[0].ability.name}</p>
+      </article>
+      `
+
+      cards.insertAdjacentHTML('beforeend', html);
+    }
+
+    const getPokemonByName = async function (pokemon) {
+      try {
+        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`);
+        const data = await response.json();
+
+        renderCard(data)
+      } catch (error) {
+        console.error('El Pokemon no existe');
+      }
+
+    }
+
+    getPokemonByName('pikachu')
+    getPokemonByName('bulbasaur')
+    getPokemonByName('charmander')
+    getPokemonByName('squirtle')
+    getPokemonByName('meowth')
+    getPokemonByName('ditto')
+    getPokemonByName('raichu')
+    getPokemonByName('diglett')
+    getPokemonByName('slowpoke')
+    getPokemonByName('flareon')
+  </script>
+</body>
+
+</html>
